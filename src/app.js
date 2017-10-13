@@ -1,7 +1,7 @@
 export class App {
 
   constructor() {
-    this.selectedCountry = 'PERU'
+    
   }
 
   configureRouter(config, router) {

@@ -1,4 +1,6 @@
 import { Slang } from '../models/slang'
+import { HttpClient } from 'aurelia-fetch-client'
+import { inject } from 'aurelia-framework'
 
 let slangList = [
   new Slang("Chevere", ["Bakan", "Paja", "Piola"]),
@@ -13,18 +15,24 @@ let slangList = [
 
 let latency = 1000
 
+@inject(HttpClient)
 export class SlangService {
 
-  getSlangList() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(slangList)
-      }, latency)
-    })     
+  constructor(httpClient) {
+    httpClient.configure(config => {
+      config.withBaseUrl('http://localhost:3000/api/')
+    })
+    this.http = httpClient
   }
 
-  getSlangDetail(slang, country) {
-    
+  getSlangList(country) {
+    return this.http.fetch(`slangs?country=${country}`)
+      .then(response => response.json())
+      .then(data => data)    
+
+  }
+
+  getSlangDetail(slang, country) {    
     let result = null
 
     slangList.forEach(slangItem => {

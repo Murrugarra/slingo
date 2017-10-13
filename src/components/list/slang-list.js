@@ -1,17 +1,30 @@
 import { SlangService } from '../../backend/slang-service'
 import { inject } from 'aurelia-framework'
+import { EventAggregator } from 'aurelia-event-aggregator'
 
-@inject(SlangService)
+@inject(SlangService, EventAggregator)
 export class SlangList {     
-  constructor(slangService) {
+  constructor(slangService, ea) {
     this.slangService = slangService
-    this.slangList = []
+    this.ea = ea
+    this.slangs = []
+    this.selectedCountry = 'PERU'
   }
 
   created() {
-    this.slangService.getSlangList().then(slangs => {
-      console.log(slangs)
-      this.slangList = slangs
+    this.subscribe()
+  }
+
+  subscribe() {
+    this.ea.subscribe('selectedCountry', payload => {      
+      this.selectedCountry = payload.selectedCountry
+      this.retrieveSlangs()
+    })
+  }
+
+  retrieveSlangs() {    
+    this.slangService.getSlangList(this.selectedCountry).then(slgs => {
+      this.slangs = slgs
     })
   }
 
