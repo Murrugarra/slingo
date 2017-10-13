@@ -5,16 +5,14 @@ import { SlangService } from '../../backend/slang-service'
 export class SlangDetail {
   slang = null
   slangTitle = null
-  selectedCountry = null
 
   constructor(slangService) { 
     this.slangService = slangService
   }
 
-  activate(slang) {
-    this.slangTitle = slang.slang    
-    this.selectedCountry = slang.country
-    this.slangService.getSlangDetail(slang.slang, slang.country).then(slangDetail => {
+  activate(params) {    
+    this.slangTitle = 'algo'    
+    this.slangService.getSlangDetail(params._id).then(slangDetail => {
       this.slang = slangDetail
     })
 

@@ -32,21 +32,10 @@ export class SlangService {
 
   }
 
-  getSlangDetail(slang, country) {    
-    let result = null
-
-    slangList.forEach(slangItem => {
-      if (slangItem.slang == slang) 
-        result = slangItem
-    })
-
-    result.meaning = "Significado de la palabra va escrito aca para que los demas aprendan que shusha es"
-
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(result)
-      }, latency)
-    })
+  getSlangDetail(_id) {    
+    return this.http.fetch(`slangs/${_id}`)
+      .then(response => response.json())
+      .then(data => data)
   }
 
 }

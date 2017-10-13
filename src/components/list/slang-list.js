@@ -9,16 +9,19 @@ export class SlangList {
     this.ea = ea
     this.slangs = []
     this.selectedCountry = 'PERU'
+    this.subscribed = false
   }
 
-  created() {
+  attached() {    
     this.subscribe()
+    this.retrieveSlangs()
   }
 
   subscribe() {
     this.ea.subscribe('selectedCountry', payload => {      
       this.selectedCountry = payload.selectedCountry
       this.retrieveSlangs()
+      this.subscribed = true
     })
   }
 

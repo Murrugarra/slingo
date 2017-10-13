@@ -1,11 +1,18 @@
 <template>
   <require from="../../resources/value-converters/array-format"></require>
   <div class="container">
-    <h1>${slangTitle}</h1>
+    <h1>${slang.slang}</h1>
+    <h3>${slang.meaning}</h3>
     <span repeat.for="synonym of slang.synonyms">
-        <a route-href="route:slang-detail; paramsgit a.bind: {slang:synonym, country:selectedCountry}" > ${synonym} </a>
+      <a> ${synonym} </a>
     </span>
-    <p>${slang.meaning}</p>
+    <div if.bind="slang.examples.length > 0">
+      <h2>Examples</h2>
+      <ul repeat.for="example of slang.examples">
+        <li>${example}</li>
+      </ul>
+    </div>
+
   </div>
-  
+
 </template>
