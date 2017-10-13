@@ -1,11 +1,11 @@
 <template>
-  <require from="../../resources/value-converters/array-format"></require>
+  <require from="../../resources/elements/synonym"></require>
   <div class="container">
     <div class="row">
-        <div class="col-sm-4 col-md-3 col-lg-3" repeat.for="slangItem of slangs">
-            <h3><a route-href='route:slang-detail; params.bind: {_id: slangItem._id}'>${slangItem.slang}</a></h3>
+        <div class="col-sm-4 col-md-3 col-lg-3" repeat.for="slangItem of slangs" style="min-height: 170px">
+            <h3><a route-href='route:slang-detail; params.bind: {_id: slangItem._id}'>${slangItem.slang}</a></h3>             
             <h4>${slangItem.meaning}</h4>
-            <h6>${slangItem.synonyms | arrayFormat}</h6>
+            <synonym repeat.for="syn of slangItem.synonyms" value.bind="syn"></synonym>                        
           </div>
     </div>    
   </div>

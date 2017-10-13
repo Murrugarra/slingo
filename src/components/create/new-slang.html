@@ -1,0 +1,48 @@
+<template>
+  <div class="container">
+    <h1>Crear Nuevo</h1>
+
+    <ul if.bind="slangValidationController.errors">
+      <li repeat.for="error of slangValidationController.errors">${error}</li>
+    </ul>
+
+
+    <form with.bind="slang" submit.trigger="createSlang()">
+        <div class="form-group row">
+            <label for="countryInput" class="col-2 col-form-label">Pais</label>
+            <select value.bind="country">
+                <option repeat.for="country of countries" value.bind="country">${country}</option>
+              </select>
+        </div>
+        <div class="form-group row">
+            <label for="slangInput" class="col-2 col-form-label">Palabra</label>
+            <div class="col-10">
+              <input class="form-control" type="text" id="slangInput" value.bind="slang">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="meaningInput" class="col-2 col-form-label">Significado</label>
+            <div class="col-10">
+              <input class="form-control" type="text" id="meaningInput" value.bind="meaning">
+            </div>
+        </div>        
+        <div class="form-group row">
+            <label for="synonymInput" class="col-2 col-form-label">Similares</label>
+            <div class="col-10">
+              <input class="form-control" type="text" id="synonymInput" placeholder="Buscar">
+              <button>+</button>
+            </div>
+            
+        </div>
+        <div class="form-group row">
+            <label for="examplenput" class="col-2 col-form-label">Ejemplos</label>
+            <div class="col-10">
+              <input class="form-control" type="text" id="examplenput" placeholder="Ejemplo">
+              <button>+</button>
+            </div>
+            
+        </div>    
+        <button class="btn btn-success" type="submit">Guardar</button>    
+    </form>
+  </div>
+</template>

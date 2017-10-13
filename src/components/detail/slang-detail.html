@@ -1,11 +1,9 @@
 <template>
-  <require from="../../resources/value-converters/array-format"></require>
+  <require from="../../resources/elements/synonym"></require>
   <div class="container">
     <h1>${slang.slang}</h1>
+    <synonym repeat.for="syn of slang.synonyms" value.bind="syn"></synonym>
     <h3>${slang.meaning}</h3>
-    <span repeat.for="synonym of slang.synonyms">
-      <a> ${synonym} </a>
-    </span>
     <div if.bind="slang.examples.length > 0">
       <h2>Examples</h2>
       <ul repeat.for="example of slang.examples">

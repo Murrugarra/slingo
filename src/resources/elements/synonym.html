@@ -1,0 +1,5 @@
+<template>
+  
+  <a if.bind="value.slang_id" route-href='route:slang-detail; params.bind: {_id: value.slang_id}'> ${value.slang} </a>
+  <span if.bind="value.slang_id==null" > ${value.slang} </span>
+</template>
